@@ -37,5 +37,5 @@ func getMax(numbers []int) int {
 }
 
 func main() {
-	day07()
+	day12()
 }
