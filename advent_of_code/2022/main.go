@@ -10,11 +10,17 @@ import (
 func getLines(filename string) []string {
 	absPath, _ := filepath.Abs("./" + filename)
 	readFile, err := os.Open(absPath)
-	defer readFile.Close()
-
 	if err != nil {
 		fmt.Println(err)
+		return nil
 	}
+	defer func() {
+		err = readFile.Close()
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
+
 	fileScanner := bufio.NewScanner(readFile)
 
 	fileScanner.Split(bufio.ScanLines)
@@ -37,5 +43,5 @@ func getMax(numbers []int) int {
 }
 
 func main() {
-	day12()
+	day13()
 }
